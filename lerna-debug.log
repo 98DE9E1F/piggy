@@ -1,0 +1,24 @@
+0 silly input [ 'react' ]
+1 silly flags { _: [ 'add' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   dev: false,
+1 silly flags   D: false,
+1 silly flags   args: [ 'react' ] }
+2 verbose rootPath C:\Users\nnnn\Desktop\piggy
+3 info version 2.11.0
+4 silly isInitialized
+5 silly isInitialized true
+6 silly existsSync C:\Users\nnnn\Desktop\piggy\VERSION
+7 silly initialize attempt
+8 error initialize callback with error
+9 error RequestError: connect ETIMEDOUT 104.18.98.96:443
+9 error     at ClientRequest.req.once.err (C:\Users\nnnn\AppData\Roaming\npm\node_modules\lerna\node_modules\got\index.js:73:21)
+9 error     at Object.onceWrapper (events.js:315:30)
+9 error     at emitOne (events.js:116:13)
+9 error     at ClientRequest.emit (events.js:211:7)
+9 error     at TLSSocket.socketErrorListener (_http_client.js:387:9)
+9 error     at emitOne (events.js:116:13)
+9 error     at TLSSocket.emit (events.js:211:7)
+9 error     at emitErrorNT (internal/streams/destroy.js:64:8)
+9 error     at _combinedTickCallback (internal/process/next_tick.js:138:11)
