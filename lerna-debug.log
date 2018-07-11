@@ -1,24 +1,59 @@
-0 silly input [ 'react' ]
-1 silly flags { _: [ 'add' ],
+0 silly input [ 'start' ]
+1 silly flags { _: [ 'run' ],
 1 silly flags   'reject-cycles': false,
 1 silly flags   rejectCycles: false,
-1 silly flags   dev: false,
-1 silly flags   D: false,
-1 silly flags   args: [ 'react' ] }
-2 verbose rootPath C:\Users\nnnn\Desktop\piggy
+1 silly flags   stream: true,
+1 silly flags   scope: 'app',
+1 silly flags   script: 'start',
+1 silly flags   args: [] }
+2 verbose rootPath /Users/jieeliang/jsPj/piggy
 3 info version 2.11.0
-4 silly isInitialized
-5 silly isInitialized true
-6 silly existsSync C:\Users\nnnn\Desktop\piggy\VERSION
-7 silly initialize attempt
-8 error initialize callback with error
-9 error RequestError: connect ETIMEDOUT 104.18.98.96:443
-9 error     at ClientRequest.req.once.err (C:\Users\nnnn\AppData\Roaming\npm\node_modules\lerna\node_modules\got\index.js:73:21)
-9 error     at Object.onceWrapper (events.js:315:30)
-9 error     at emitOne (events.js:116:13)
-9 error     at ClientRequest.emit (events.js:211:7)
-9 error     at TLSSocket.socketErrorListener (_http_client.js:387:9)
-9 error     at emitOne (events.js:116:13)
-9 error     at TLSSocket.emit (events.js:211:7)
-9 error     at emitErrorNT (internal/streams/destroy.js:64:8)
-9 error     at _combinedTickCallback (internal/process/next_tick.js:138:11)
+4 silly existsSync /Users/jieeliang/jsPj/piggy/VERSION
+5 info scope app
+6 silly initialize attempt
+7 silly initialize success
+8 silly execute attempt
+9 silly runScriptInPackageStreaming [ 'start', [], 'app' ]
+10 silly getExecOpts { cwd: '/Users/jieeliang/jsPj/piggy/packages/app' }
+11 error execute callback with error
+12 error Error: Command failed: npm run start
+12 error npm ERR! code ELIFECYCLE
+12 error npm ERR! errno 1
+12 error npm ERR! app@0.1.0 start: `react-scripts start`
+12 error npm ERR! Exit status 1
+12 error npm ERR!
+12 error npm ERR! Failed at the app@0.1.0 start script.
+12 error npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+12 error
+12 error npm ERR! A complete log of this run can be found in:
+12 error npm ERR!     /Users/jieeliang/.npm/_logs/2018-07-11T12_00_27_543Z-debug.log
+12 error
+12 error
+12 error > app@0.1.0 start /Users/jieeliang/jsPj/piggy/packages/app
+12 error > react-scripts start
+12 error
+12 error Starting the development server...
+12 error
+12 error Compiled successfully!
+12 error
+12 error You can now view app in the browser.
+12 error
+12 error   Local:            http://localhost:3000/
+12 error   On Your Network:  http://192.168.219.44:3000/
+12 error
+12 error Note that the development build is not optimized.
+12 error To create a production build, use yarn build.
+12 error
+12 error Compiling...
+12 error Compiled successfully!
+12 error Compiling...
+12 error Compiled successfully!
+12 error Compiling...
+12 error Compiled successfully!
+12 error Failed to compile.
+12 error
+12 error ./src/pacman.png
+12 error Module build failed: Error: ENOENT: no such file or directory, open '/Users/jieeliang/jsPj/piggy/packages/app/src/pacman.png'
+12 error
+12 error     at Promise.all.then.arr (/Users/jieeliang/jsPj/piggy/node_modules/execa/index.js:236:11)
+12 error     at <anonymous>
