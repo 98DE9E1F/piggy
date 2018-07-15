@@ -3,7 +3,6 @@ import logo from '../../assets/pacman.png';
 import Editor from "../../components/Edit";
 import styled from 'styled-components'
 const Ap = styled.div`
-  text-align: center;
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -15,6 +14,8 @@ const Ap = styled.div`
   height: 150px;
   padding: 20px;
   color: white;
+  text-align: center;
+  
 }
 
 .App-title {
