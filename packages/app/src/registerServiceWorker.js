@@ -18,7 +18,9 @@ const isLocalhost = Boolean(
     )
 );
 
-export default function register() {
+const isHttp = Boolean(window.location.protocol === 'http:');
+
+export default function register(swUrl, { onUpdated, onInstalled }) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
@@ -30,29 +32,18 @@ export default function register() {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      if (isLocalhost) {
+      if (!isLocalhost && !isHttp) {
+        // It's neither localhost nor http. Just register service worker
+        registerValidSW(swUrl, { onUpdated, onInstalled });
+      } else if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
         checkValidServiceWorker(swUrl);
-
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://goo.gl/SC7cgQ'
-          );
-        });
-      } else {
-        // Is not local host. Just register service worker
-        registerValidSW(swUrl);
       }
     });
   }
 }
 
-function registerValidSW(swUrl) {
+function registerValidSW(swUrl, { onUpdated, onInstalled }) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -65,12 +56,45 @@ function registerValidSW(swUrl) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              console.log('New content is available; please refresh.');
+              if (onUpdated) {
+                onUpdated();
+              }
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
+              if (onInstalled) {
+                onInstalled();
+              }
+            }
+          } else if (installingWorker.state === 'redundant') {
+            if ('storage' in navigator && 'estimate' in navigator.storage) {
+              navigator.storage.estimate().then(results => {
+                const percentUsed = results.usage / results.quota * 100;
+                // Let's assume that if we're using 95% of our quota, then this failure
+                // was due to quota exceeded errors.
+                // TODO: Hardcoding a threshold stinks.
+                if (percentUsed >= 0.95) {
+                  // Get rid of the existing SW so that we're not stuck
+                  // with the previously cached content.
+                  registration.unregister();
+
+                  // Let's assume that we have some way of doing this without inadvertantly
+                  // blowing away storage being used on the origin by something other than
+                  // our service worker.
+                  // I don't think that the Clear-Site-Data: header helps here, unfortunately.
+                  self.caches.keys().then(names => {
+                    names.forEach(name => {
+                      self.caches.delete(name);
+                    });
+                  });
+
+                  // TODO clear indexeddb
+                }
+              });
+            } else {
+              // What about browsers that don't support navigator.storage.estimate()?
+              // There's no way of guessing why the service worker is redundant.
             }
           }
         };
