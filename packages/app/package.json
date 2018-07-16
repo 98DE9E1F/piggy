@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "color": "^3.0.0",
+    "eslint-plugin-vue": "^4.2.2",
     "monaco-editor": "^0.13.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "styled-components": "^3.3.3",
-    "eslint-plugin-vue": "^4.2.2"
+    "styled-components": "^3.3.3"
   },
   "scripts": {
     "start": "cross-env LOCAL_SERVER=1 node scripts/start.js",

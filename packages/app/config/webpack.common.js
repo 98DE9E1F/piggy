@@ -136,7 +136,7 @@ module.exports = {
 
     alias: {
       moment: 'moment/moment.js',
-
+      common:  path.resolve(__dirname, '../../common')
     },
   },
 

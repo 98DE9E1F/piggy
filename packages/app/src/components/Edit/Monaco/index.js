@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MonacoReactComponent from "./MonacoReactComponent";
 import defineTheme from './define-theme';
-
+import { Container,CodeContainer } from "./elements";
 class MonacoEditor extends Component {
   state = {}
   
@@ -35,14 +35,29 @@ class MonacoEditor extends Component {
     const options = this.getEditorOptions();
     
     return (
-      <MonacoReactComponent
-        width="100%"
-        height="100%"
-        theme="CodeSandbox"
-        options={options}
-        editorDidMount={this.configureEditor}
-        editorWillMount={defineTheme}
-        openReference={this.openReference} />
+
+      <Container>
+        <CodeContainer >
+          {this.state.fuzzySearchEnabled && (
+            <FuzzySearch
+              closeFuzzySearch={this.closeFuzzySearch}
+              setCurrentModule={this.setCurrentModule}
+              modules={sandbox.modules}
+              directories={sandbox.directories}
+              currentModuleId={currentModule.id}
+            />
+          )}
+          <MonacoReactComponent
+            width="100%"
+            height="100%"
+            theme="CodeSandbox"
+            options={options}
+            editorDidMount={this.configureEditor}
+            editorWillMount={defineTheme}
+            openReference={this.openReference}
+          />
+        </CodeContainer>
+      </Container>
     );
   }
 }
