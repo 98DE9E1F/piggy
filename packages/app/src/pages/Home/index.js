@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import logo from '../../assets/pacman.png';
-import Editor from "../../components/Edit";
-import styled from 'styled-components'
-const Ap = styled.div`
+import styled from 'styled-components';
 
+import Editor from "../../components/Edit";
+
+const Ap = styled.div`
+height:100vh;
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
 .App-header {
+  position: sticky;
+  top: 0;
+  z-index:40;
   background-color: #222;
   height: 150px;
   padding: 20px;
@@ -33,14 +37,15 @@ const Ap = styled.div`
 
 `
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
   render() {
     return (
       <Ap className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Piggy</h1>
-        </header>
-        <Editor/>
+         
+        <Editor style={{height:'100%'}}/>
       </Ap>
     );
   }

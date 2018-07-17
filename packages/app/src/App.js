@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import I from "./pages/Home";
-class App extends Component {
-  render() {
-    return (
-      <I/>
-    );
-  }
-}
 
-export default App;
+
+export default () => <I/>;

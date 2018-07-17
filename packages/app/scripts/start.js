@@ -16,7 +16,7 @@ var config = require('../config/webpack.dev');
 var paths = require('../config/paths');
 
 // Tools like Cloud9 rely on this.
-var DEFAULT_PORT = process.env.PORT || 3000;
+var DEFAULT_PORT = process.env.PORT || 3002;
 var compiler;
 var handleCompile;
 
@@ -141,7 +141,7 @@ function setupCompiler(port, protocol) {
 }
 
 function openBrowser(port, protocol) {
-  const url = protocol + '://localhost:' + port + '/s';
+  const url = protocol + '://localhost:' + port + '';
   if (process.platform === 'darwin') {
     try {
       // Try our best to reuse existing tab
@@ -166,7 +166,7 @@ function addMiddleware(devServer, index) {
   if (process.env.LOCAL_SERVER) {
     devServer.use(
       cors({
-        origin: ['http://localhost:3000', 'http://localhost:3002'],
+        origin: ['http://localhost:3002', 'http://localhost:3003'],
         credentials: true,
       })
     );
@@ -180,7 +180,7 @@ function addMiddleware(devServer, index) {
   }
   // Finally, by now we have certainly resolved the URL.
   // It may be /index.html, so let the dev server try serving it again.
-  devServer.use(devServer.middleware);
+  devServer.use(devServer.middleware);  
 }
 
 function runDevServer(port, protocol, index) {
@@ -237,15 +237,15 @@ function run(port) {
     http
       .createServer(function(req, res) {
         if (req.url.includes('.js')) {
-          proxy.web(req, res, { target: 'http://localhost:3000' + req.url });
+          proxy.web(req, res, { target: 'http://localhost:3003' + req.url });
         } else {
           proxy.web(req, res, {
-            target: 'http://localhost:3000/frame.html',
+            target: 'http://localhost:3003/frame.html',
             ignorePath: true,
           });
         }
       })
-      .listen(3002);
+      .listen(3003);
   }
 }
 
